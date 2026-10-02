@@ -4,6 +4,8 @@ import urllib.request
 from urllib.error import URLError
 from datetime import datetime
 
+import streamlit as st
+
 def load_env():
     env_vars = dict(os.environ)
     try:
@@ -15,6 +17,14 @@ def load_env():
                     env_vars[key] = val
     except FileNotFoundError:
         pass
+        
+    try:
+        # Fallback to Streamlit Secrets
+        for k, v in st.secrets.items():
+            env_vars[k] = v
+    except Exception:
+        pass
+        
     return env_vars
 
 ENV = load_env()
