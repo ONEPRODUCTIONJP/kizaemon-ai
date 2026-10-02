@@ -5,12 +5,13 @@ from urllib.error import URLError
 from datetime import datetime
 
 def load_env():
-    env_vars = {}
+    env_vars = dict(os.environ)
     try:
         with open('.env', 'r') as f:
             for line in f:
-                if '=' in line:
-                    key, val = line.strip().split('=', 1)
+                line = line.strip()
+                if line and '=' in line and not line.startswith('#'):
+                    key, val = line.split('=', 1)
                     env_vars[key] = val
     except FileNotFoundError:
         pass
