@@ -7,7 +7,7 @@ import datetime
 # --- 1. 初期設定 ---
 st.set_page_config(page_title="Kizaemon Store Assistant", page_icon="🍣")
 st.title("🍣 Kizaemon AI アシスタント")
-st.caption("完全無料版: Gemini 2.5 Flash搭載。売上予測や在庫について聞いてください。")
+st.caption("売上予測や在庫について聞いてください。")
 
 api_key = kizaemon_tools.ENV.get("GEMINI_API_KEY")
 if not api_key:
